@@ -5,7 +5,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.stage.Screen;
 
+import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -38,6 +40,9 @@ public class DrawController {
         }
 
         String pattern = "H:mm:s";
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        group.setLayoutX(screenSize.getWidth() / 3);
+        group.setLayoutY(screenSize.getHeight() / 3);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         String date = simpleDateFormat.format(new Date());
         output.setContent(new Label(date + ": " + Arrays.deepToString(coordinates)));
