@@ -3,8 +3,6 @@ package sample.Controllers;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
-import java.util.Arrays;
-
 public class MatrixController {
 
 
@@ -36,13 +34,13 @@ public class MatrixController {
                     {1},
             };
 
-            tempMatrix = MatrixController.multiplyByMatrix(changeMatrix, helperMatrix);
-            System.out.println(Arrays.deepToString(tempMatrix));
+            tempMatrix = MatrixController.multiplyMatrixV2(changeMatrix, helperMatrix);
 
             if (tempMatrix != null) {
                 dotsMatrix[i][0] = tempMatrix[0][0];
                 dotsMatrix[i][1] = tempMatrix[1][0];
                 dotsMatrix[i][2] = tempMatrix[2][0];
+                dotsMatrix[i][3] = tempMatrix[3][0];
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Ошибка");
@@ -56,5 +54,25 @@ public class MatrixController {
         }
 
         return dotsMatrix;
+    }
+
+    public static double[][] multiplyMatrixV2(double[][] firstMatrix, double[][] secondMatrix) {
+        double[][] result = new double[firstMatrix.length][secondMatrix[0].length];
+
+        for (int row = 0; row < result.length; row++) {
+            for (int col = 0; col < result[row].length; col++) {
+                result[row][col] = multiplyMatricesCell(firstMatrix, secondMatrix, row, col);
+            }
+        }
+
+        return result;
+    }
+
+    public static double multiplyMatricesCell(double[][] firstMatrix, double[][] secondMatrix, int row, int col) {
+        double cell = 0;
+        for (int i = 0; i < secondMatrix.length; i++) {
+            cell += firstMatrix[row][i] * secondMatrix[i][col];
+        }
+        return cell;
     }
 }

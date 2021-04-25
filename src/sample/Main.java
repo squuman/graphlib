@@ -16,10 +16,8 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import sample.Controllers.DrawController;
 import sample.Controllers.MatrixController;
-import sample.Controllers.RestartController;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Main extends Application {
 
@@ -27,62 +25,101 @@ public class Main extends Application {
      * matrix of coordinates
      */
     private final double[][] dotsMatrixConst = {
-            {3, 3, 0, 1},
-            {2, 4, 0, 1},
-            {2, 6, 0, 1},
-            {6, 6, 0, 1},
-            {6, 13, 0, 1},
-            {8, 13, 0, 1},
-            {9, 12, 0, 1},
-            {9, 6, 0, 1},
-            {8, 6, 0, 1},
-            {12, 6, 0, 1},
-            {13, 5, 0, 1},
-            {13, 3, 0, 1},
-            {12, 4, 0, 1},
-            {7, 12, 0, 1},
-            {7, 5, 0, 1},
-            {3, 5, 0, 1},
+            {3, 3, 0, 1},//1
+            {2, 4, 0, 1},//2
+            {2, 6, 0, 1},//3
+            {6, 6, 0, 1},//4
+            {6, 13, 0, 1},//5
+            {8, 13, 0, 1},//6
+            {9, 12, 0, 1},//7
+            {9, 6, 0, 1},//8
+            {8, 6, 0, 1},//9
+            {12, 6, 0, 1},//10
+            {13, 5, 0, 1},//11
+            {13, 3, 0, 1},//12
+            {12, 4, 0, 1},//13
+
+            {3, 3, 2, 1},//14
+            {2, 4, 2, 1},//15
+            {2, 6, 2, 1},//16
+            {6, 6, 2, 1},//17
+            {6, 13, 2, 1},//18
+            {8, 13, 2, 1},//19
+            {9, 12, 2, 1},//20
+            {9, 6, 2, 1},//21
+            {8, 6, 2, 1},//22
+            {12, 6, 2, 1},//23
+            {13, 5, 2, 1},//24
+            {13, 3, 2, 1},//25
+            {12, 4, 2, 1},//26
     };
     private double[][] dotsMatrix = {
-            {3, 3, 0, 1},
-            {2, 4, 0, 1},
-            {2, 6, 0, 1},
-            {6, 6, 0, 1},
-            {6, 13, 0, 1},
-            {8, 13, 0, 1},
-            {9, 12, 0, 1},
-            {9, 6, 0, 1},
-            {8, 6, 0, 1},
-            {12, 6, 0, 1},
-            {13, 5, 0, 1},
-            {13, 3, 0, 1},
-            {12, 4, 0, 1},
-            {7, 12, 0, 1},
-            {7, 5, 0, 1},
-            {3, 5, 0, 1},
+            {3, 3, 0, 1},//1
+            {2, 4, 0, 1},//2
+            {2, 6, 0, 1},//3
+            {6, 6, 0, 1},//4
+            {6, 13, 0, 1},//5
+            {8, 13, 0, 1},//6
+            {9, 12, 0, 1},//7
+            {9, 6, 0, 1},//8
+            {8, 6, 0, 1},//9
+            {12, 6, 0, 1},//10
+            {13, 5, 0, 1},//11
+            {13, 3, 0, 1},//12
+            {12, 4, 0, 1},//13
+            {3, 3, 2, 1},//14
+            {2, 4, 2, 1},//15
+            {2, 6, 2, 1},//16
+            {6, 6, 2, 1},//17
+            {6, 13, 2, 1},//18
+            {8, 13, 2, 1},//19
+            {9, 12, 2, 1},//20
+            {9, 6, 2, 1},//21
+            {8, 6, 2, 1},//22
+            {12, 6, 2, 1},//23
+            {13, 5, 2, 1},//24
+            {13, 3, 2, 1},//25
+            {12, 4, 2, 1},//26
     };
 
     /**
      * matrix of peaks
      */
-    private int[][] peaksMatrix = {
-//            {1, 2},
+    private final int[][] peaksMatrix = {
             {2, 3},
             {3, 4},
             {4, 5},
             {5, 6},
-//            {6, 7},
-//            {7, 8},
             {8, 9},
             {8, 10},
-//            {10, 11},
-//            {11, 12},
-//            {12, 13},
             {2, 13},
             {9, 6},
             {13, 10},
-//            {12, 1},
+            //second letter
+            {15, 16},
+            {16, 17},
+            {17, 18},
+            {19, 22},
+            {18, 19},
+            {21, 22},
+            {21, 23},
+            {15, 26},
+            {22, 21},
+            {26, 23},
+            //links letters
+            {2, 15},
+            {3, 16},
+            {4, 17},
+            {5, 18},
+            {6, 19},
+//            {7,20},
+//            {8,21},
+            {9, 22},
+            {10, 23},
+            {13, 26},
+
+
+//            {1, 2},
 //            {14, 5},
 //            {14, 7},
 //            {14, 15},
@@ -90,12 +127,19 @@ public class Main extends Application {
 //            {15, 16},
 //            {16, 1},
 //            {16, 3},
+//            {6, 7},
+//            {7, 8},
+//            {10, 11},
+//            {11, 12},
+//            {12, 13},
+//            {12, 1},
+
     };
 
     /**
      * Matrix change history
      */
-    ArrayList<String> matrixHistory = new ArrayList<>();
+    ArrayList<String> historyData = new ArrayList<>();
 
     /**
      * Output coordinates data to GUI console
@@ -103,7 +147,7 @@ public class Main extends Application {
     private final ScrollPane coordinatesChangeData = new ScrollPane();
 
     /**
-     * Rotation transform
+     * Rotation transform by mouse
      */
 
     private double anchorX, anchorY;
@@ -111,6 +155,12 @@ public class Main extends Application {
     private double anchorAngleY = 0;
     private final DoubleProperty angleX = new SimpleDoubleProperty(0);
     private final DoubleProperty angleY = new SimpleDoubleProperty(0);
+
+
+    /**
+     * Perspective transform
+     */
+    private double focusPoint;
 
     /**
      * Tools for object edit
@@ -128,6 +178,7 @@ public class Main extends Application {
     private final Label stretchLabelY = new Label("Растяжение/Сжатие по Y");
     private final Label stretchLabelZ = new Label("Растяжение/Сжатие по Z");
     private final Label inverseLabel = new Label("Отразить");
+    private final Label perspectiveLabel = new Label("Точка обзора");
     private final TextField rotateX = new TextField();
     private final TextField rotateY = new TextField();
     private final TextField rotateZ = new TextField();
@@ -137,6 +188,7 @@ public class Main extends Application {
     private final TextField stretchX = new TextField();
     private final TextField stretchY = new TextField();
     private final TextField stretchZ = new TextField();
+    private final TextField perspectiveField = new TextField();
     private final Button rotate = new Button("Поворот");
     private final Button inverse = new Button("Отразить");
     private final Button move = new Button("Переместить");
@@ -153,10 +205,13 @@ public class Main extends Application {
     private final Pane paneForFigure = new Pane();
     private final VBox subtool = new VBox(5);
     private final VBox tools = new VBox(15);
+    private final ScrollPane scrollTools = new ScrollPane();
     private final VBox rotateGroup = new VBox(5);
     private final VBox moveGroup = new VBox(5);
     private final VBox stretchGroup = new VBox(5);
     private final VBox inverseGroup = new VBox(5);
+    private final VBox perspectiveGroup = new VBox(5);
+    private final ScrollPane historyScrollPane = new ScrollPane();
 
     /**
      * Menu:restart, exit
@@ -165,7 +220,6 @@ public class Main extends Application {
     private final Menu menu = new Menu("Система");
     private final MenuItem menuItemExit = new MenuItem("Выход");
     private final MenuItem menuItemRestart = new MenuItem(" Перезапуск");
-
 
     /**
      * Inverse Matrix
@@ -176,6 +230,11 @@ public class Main extends Application {
             {0, 0, 1, 0},
             {0, 0, 0, 1}
     };
+
+    /**
+     * Perspective data
+     */
+    public static double perspectiveConst = 3;
 
     /**
      * @param primaryStage stage
@@ -206,13 +265,17 @@ public class Main extends Application {
                 stretchLabelZ, stretchZ,
                 stretch
         );
+        perspectiveGroup.getChildren().addAll(
+                perspectiveLabel,
+                perspectiveField);
         inverseGroup.getChildren().addAll(inverseLabel, inverse);
-        tools.getChildren().addAll(rotateGroup, inverseGroup, moveGroup, stretchGroup);
+        tools.getChildren().addAll(perspectiveGroup, rotateGroup, inverseGroup, moveGroup, stretchGroup);
         tools.getChildren().add(subtool);
+        scrollTools.setContent(tools);
         paneForFigure.getChildren().add(figure);
         root.setCenter(figure);
-        root.setRight(tools);
-        root.setBottom(coordinatesChangeData);
+        root.setRight(scrollTools);
+        root.setBottom(historyScrollPane);
         root.setTop(menuBar);
 
         //Styles and properties
@@ -230,26 +293,25 @@ public class Main extends Application {
         moveLabel.setStyle("-fx-font-size: 20px");
         stretchLabel.setStyle("-fx-font-size: 20px");
         tools.setStyle("-fx-border-color: black");
-        coordinatesChangeData.setStyle("-fx-border-color: black");
+        historyScrollPane.setStyle("-fx-border-color: black");
         tools.setPadding(new Insets(50, 30, 0, 30));
-        coordinatesChangeData.setPadding(new Insets(10, 10, 10, 10));
+        historyScrollPane.setMinHeight(100);
+        historyScrollPane.setPadding(new Insets(10, 10, 10, 10));
         paneForFigure.setPadding(new Insets(50, 0, 0, 0));
-        coordinatesChangeData.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        coordinatesChangeData.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        historyScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        historyScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
 
         //Draw object
-        DrawController.drawObject(dotsMatrix, peaksMatrix, figure, Color.RED, coordinatesChangeData, 10);
+        DrawController.drawObject(dotsMatrix, peaksMatrix, figure, Color.RED, coordinatesChangeData, 10,perspectiveConst);
 
         //Events listeners
         //Menu
-        menuItemExit.setOnAction(actionEvent -> {
-            System.out.println("kek");
-            System.exit(0);
-        });
+        menuItemExit.setOnAction(actionEvent -> System.exit(0));
 
         menuItemRestart.setOnAction(actionEvent -> {
-            DrawController.drawObject(dotsMatrixConst, peaksMatrix, figure,
-                    Color.BLACK, coordinatesChangeData, 10);
+            dotsMatrix = dotsMatrixConst;
+            DrawController.drawObject(dotsMatrix, peaksMatrix, figure,
+                    Color.BLACK, coordinatesChangeData, 10,perspectiveConst);
             root.setCenter(null);
             root.setCenter(figure);
 
@@ -260,8 +322,9 @@ public class Main extends Application {
             double rotateXRadians = Math.toRadians(Double.parseDouble(rotateX.getText()));
             double rotateYRadians = Math.toRadians(Double.parseDouble(rotateY.getText()));
             double rotateZRadians = Math.toRadians(Double.parseDouble(rotateZ.getText()));
+            focusPoint = Double.parseDouble(perspectiveField.getText());
             double[][] degreeMatrixX = {
-                    {1, 0, 0, 1},
+                    {1, 0, 0, 0},
                     {0, Math.cos(rotateXRadians), Math.sin(rotateXRadians), 0},
                     {0, -Math.sin(rotateXRadians), Math.cos(rotateXRadians), 0},
                     {0, 0, 0, 1}
@@ -284,18 +347,20 @@ public class Main extends Application {
             DrawController.rotateMatrix(dotsMatrix, degreeMatrixZ);
             root.setCenter(null);
             root.setCenter(figure);
+            DrawController.outputHistory(historyScrollPane, historyData);
             DrawController.drawObject(dotsMatrix, peaksMatrix, figure,
-                    Color.BLACK, coordinatesChangeData, 10);
+                    Color.BLACK, coordinatesChangeData, 10,focusPoint);
         });
 
         //Inverse object by YZ
         inverse.setOnAction(actionEvent -> {
-
             MatrixController.changeMatrix(dotsMatrix, inverseMatrix);
             root.setCenter(null);
             root.setCenter(figure);
+            focusPoint = Double.parseDouble(perspectiveField.getText());
+            DrawController.outputHistory(historyScrollPane, historyData);
             DrawController.drawObject(dotsMatrix, peaksMatrix, figure,
-                    Color.BLACK, coordinatesChangeData, 10);
+                    Color.BLACK, coordinatesChangeData, 10,focusPoint);
         });
 
         //Move obj, z not move, but coordinates change
@@ -310,13 +375,7 @@ public class Main extends Application {
                     {0, 0, 0, 1},
             };
             MatrixController.changeMatrix(dotsMatrix, moveMatrix);
-            System.out.println(Arrays.deepToString(dotsMatrix));
-            root.setCenter(null);
-            paneForFigure.getChildren().clear();
-            paneForFigure.getChildren().add(figure);
-            root.setCenter(paneForFigure);
-            DrawController.drawObject(dotsMatrix, peaksMatrix, figure,
-                    Color.BLACK, coordinatesChangeData, 10);
+            changeCenter();
         });
 
         stretch.setOnAction(actionEvent -> {
@@ -330,20 +389,26 @@ public class Main extends Application {
                     {0, 0, 0, 1},
             };
             MatrixController.changeMatrix(dotsMatrix, stretchMatrix);
-            System.out.println(Arrays.deepToString(dotsMatrix));
-            root.setCenter(null);
-            paneForFigure.getChildren().clear();
-            paneForFigure.getChildren().add(figure);
-            root.setCenter(paneForFigure);
-            DrawController.drawObject(dotsMatrix, peaksMatrix, figure,
-                    Color.BLACK, coordinatesChangeData, 10);
+            changeCenter();
         });
 
         //Set default Scene settings
+//        initMouseControl(figure,scene);
         primaryStage.setTitle("GraphLib");
         primaryStage.setMaximized(true);
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    private void changeCenter() {
+        root.setCenter(null);
+        paneForFigure.getChildren().clear();
+        paneForFigure.getChildren().add(figure);
+        root.setCenter(paneForFigure);
+        focusPoint = Double.parseDouble(perspectiveField.getText());
+        DrawController.outputHistory(historyScrollPane, historyData);
+        DrawController.drawObject(dotsMatrix, peaksMatrix, figure,
+                Color.BLACK, coordinatesChangeData, 10,focusPoint);
     }
 
     private void initMouseControl(Group group, Scene scene) {
@@ -366,7 +431,6 @@ public class Main extends Application {
         scene.setOnMouseDragged(mouseEvent -> {
             angleX.set(anchorAngleX - (anchorAngleY - mouseEvent.getSceneY()));
             angleY.set(anchorAngleY - (anchorAngleX - mouseEvent.getSceneX()));
-            System.out.println(mouseEvent);
         });
     }
 
